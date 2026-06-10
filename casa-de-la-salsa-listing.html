@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Casa de la Salsa — The Local Post</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: Arial, sans-serif; background: #f5f5f5; color: #202124; }
+
+/* Nav */
+.nav { background: #fff; border-bottom: 1px solid #e0e0e0; padding: 0 32px; height: 60px; display: flex; align-items: center; justify-content: space-between; }
+.nav-logo { font-size: 20px; font-weight: 700; color: #7248B9; }
+.nav-links { display: flex; gap: 24px; font-size: 14px; }
+.nav-links a { text-decoration: none; color: #5f6368; }
+.nav-links a:hover { color: #7248B9; }
+
+/* Urgency banner */
+.urgency { background: #d93025; color: white; text-align: center; padding: 10px 32px; font-size: 14px; font-weight: 600; letter-spacing: 0.02em; }
+.urgency span { background: rgba(255,255,255,0.2); padding: 2px 10px; border-radius: 12px; margin-left: 8px; }
+
+/* Hero */
+.hero { background: linear-gradient(135deg, #1a0008 0%, #5a0a0a 50%, #8B1a1a 100%); padding: 48px 32px; color: white; }
+.hero-inner { max-width: 940px; margin: 0 auto; }
+.hero-tag { background: rgba(255,200,0,0.15); border: 1px solid rgba(255,200,0,0.4); color: #ffd700; font-size: 12px; font-weight: 600; padding: 4px 12px; border-radius: 20px; display: inline-block; margin-bottom: 16px; text-transform: uppercase; letter-spacing: 0.05em; }
+.hero h1 { font-size: 34px; font-weight: 800; margin-bottom: 6px; }
+.hero-tagline { font-size: 15px; color: rgba(255,255,255,0.75); font-style: italic; margin-bottom: 6px; }
+.hero-sub { font-size: 15px; color: rgba(255,255,255,0.85); margin-bottom: 24px; line-height: 1.6; max-width: 600px; }
+.hero-stats { display: flex; gap: 28px; flex-wrap: wrap; }
+.stat-num { font-size: 22px; font-weight: 700; color: #ffd700; }
+.stat-label { font-size: 12px; color: rgba(255,255,255,0.65); margin-top: 2px; }
+
+/* Social links */
+.social-links { display: flex; gap: 12px; margin-top: 20px; }
+.social-btn { display: flex; align-items: center; gap: 6px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.25); color: white; text-decoration: none; font-size: 13px; padding: 6px 14px; border-radius: 20px; transition: background 0.15s; }
+.social-btn:hover { background: rgba(255,255,255,0.2); }
+
+/* Main layout */
+.main { max-width: 940px; margin: 0 auto; padding: 28px 32px; display: grid; grid-template-columns: 1fr 340px; gap: 24px; align-items: start; }
+
+/* Cards */
+.card { background: #fff; border-radius: 12px; border: 1px solid #e0e0e0; padding: 22px; margin-bottom: 18px; }
+.card h2 { font-size: 15px; font-weight: 600; margin-bottom: 14px; color: #202124; }
+
+/* Next event highlight */
+.next-event { background: linear-gradient(135deg, #1a0008, #5a0a0a); border-radius: 12px; padding: 20px 22px; margin-bottom: 18px; color: white; display: flex; align-items: center; justify-content: space-between; }
+.next-event-left h3 { font-size: 13px; font-weight: 600; color: #ffd700; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 4px; }
+.next-event-left p { font-size: 20px; font-weight: 800; margin-bottom: 4px; }
+.next-event-left span { font-size: 13px; color: rgba(255,255,255,0.7); }
+.next-event-right { text-align: right; }
+.next-event-right .date-big { font-size: 36px; font-weight: 900; color: #ffd700; line-height: 1; }
+.next-event-right .date-sub { font-size: 12px; color: rgba(255,255,255,0.65); margin-top: 2px; }
+
+/* Photos */
+.photo-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
+.photo { border-radius: 8px; overflow: hidden; aspect-ratio: 4/3; background: #2a0a0a; display: flex; align-items: center; justify-content: center; color: #cc6666; font-size: 12px; text-align: center; padding: 8px; }
+.photo.large { grid-column: span 2; aspect-ratio: 16/9; }
+
+/* About */
+.about-text { font-size: 14px; line-height: 1.75; color: #3c4043; }
+
+/* Venue note */
+.venue-note { background: #fff8e1; border-left: 3px solid #ffa000; border-radius: 0 8px 8px 0; padding: 12px 14px; margin-top: 14px; font-size: 13px; color: #5f4000; line-height: 1.5; }
+
+/* Audience pills */
+.pills { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+.pill { background: #fce4ec; color: #880e4f; font-size: 12px; padding: 5px 12px; border-radius: 16px; font-weight: 500; }
+.pill.gold { background: #fff8e1; color: #8B6000; }
+.pill.dark { background: #f3e5f5; color: #4a148c; }
+
+/* What you get grid */
+.what-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.what-item { display: flex; align-items: flex-start; gap: 10px; font-size: 13px; color: #3c4043; line-height: 1.5; }
+.what-icon { width: 28px; height: 28px; border-radius: 50%; background: #fce4ec; display: flex; align-items: center; justify-content: center; font-size: 13px; flex-shrink: 0; }
+
+/* Booking card */
+.booking-card { background: #fff; border-radius: 12px; border: 1px solid #e0e0e0; padding: 22px; position: sticky; top: 16px; }
+.booking-card h3 { font-size: 16px; font-weight: 700; margin-bottom: 4px; }
+.booking-subtitle { font-size: 13px; color: #5f6368; margin-bottom: 16px; }
+
+/* Deadline pill */
+.deadline { background: #fce4ec; color: #c62828; font-size: 12px; font-weight: 600; padding: 6px 12px; border-radius: 8px; margin-bottom: 14px; display: flex; align-items: center; gap: 6px; }
+
+/* Packages */
+.package { border: 1.5px solid #e0e0e0; border-radius: 10px; padding: 12px 14px; margin-bottom: 8px; cursor: pointer; transition: all 0.15s; position: relative; }
+.package:hover { border-color: #c62828; background: #fff8f8; }
+.package.selected { border-color: #c62828; background: #fff8f8; }
+.package-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 3px; }
+.package-name { font-size: 13px; font-weight: 600; color: #202124; }
+.package-price { font-size: 15px; font-weight: 700; color: #c62828; }
+.package-desc { font-size: 11px; color: #5f6368; line-height: 1.4; }
+.package-save { background: #2e7d32; color: white; font-size: 10px; font-weight: 600; padding: 1px 7px; border-radius: 8px; margin-left: 6px; }
+.popular-badge { position: absolute; top: -9px; right: 10px; background: #c62828; color: white; font-size: 9px; font-weight: 700; padding: 2px 8px; border-radius: 8px; text-transform: uppercase; letter-spacing: 0.05em; }
+
+/* Book button */
+.book-btn { width: 100%; background: linear-gradient(135deg, #c62828, #8B1a1a); color: white; border: none; padding: 14px; border-radius: 8px; font-size: 15px; font-weight: 700; cursor: pointer; margin-top: 14px; transition: opacity 0.15s; letter-spacing: 0.02em; }
+.book-btn:hover { opacity: 0.9; }
+
+/* Trust */
+.trust { margin-top: 14px; }
+.trust-item { display: flex; align-items: center; gap: 8px; font-size: 12px; color: #5f6368; margin-bottom: 5px; }
+
+/* Divider */
+hr { border: none; border-top: 1px solid #f0f0f0; margin: 14px 0; }
+
+/* Contact */
+.contact-link { text-align: center; font-size: 13px; color: #7248B9; margin-top: 10px; cursor: pointer; text-decoration: underline; }
+
+/* Summary */
+.summary { background: #fff8f8; border: 1px solid #ffcdd2; border-radius: 8px; padding: 10px 12px; margin-top: 10px; font-size: 12px; display: none; }
+.summary.show { display: block; }
+.summary-title { font-weight: 700; color: #c62828; margin-bottom: 2px; }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-logo">The Local Post</div>
+  <div class="nav-links">
+    <a href="#">Browse Opportunities</a>
+    <a href="#">For Hosts</a>
+    <a href="#">About</a>
+  </div>
+</nav>
+
+<div class="urgency">
+  ⚡ Sponsorships still available for the June 19 event — book before they're gone!
+  <span>10 days away</span>
+</div>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-tag">💃 Latin Dance Social · Spokane, WA</div>
+    <h1>Casa de la Salsa</h1>
+    <div class="hero-tagline">Move Your Body. Feel the Rhythm. Live the Passion.</div>
+    <div class="hero-sub">Spokane's premier Latin dance social club hosting recurring Salsa, Bachata, Merengue & Cumbia events — bringing together young professionals, couples, and community members for high-energy evenings of music, dancing, and connection.</div>
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="stat-num">150–300</div>
+        <div class="stat-label">Attendees per event</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">2–4 hrs</div>
+        <div class="stat-label">Engagement time</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">$5</div>
+        <div class="stat-label">Cover charge</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">All Ages</div>
+        <div class="stat-label">Open to everyone</div>
+      </div>
+    </div>
+    <div class="social-links">
+      <a class="social-btn" href="https://www.instagram.com/casadelasalsaspokane1/" target="_blank">📸 Instagram</a>
+      <a class="social-btn" href="https://www.facebook.com/p/Casa-De-La-Salsa-Spokane-61573677696370/" target="_blank">👥 Facebook</a>
+    </div>
+  </div>
+</div>
+
+<div class="main">
+
+  <!-- LEFT -->
+  <div>
+
+    <!-- Next event -->
+    <div class="next-event">
+      <div class="next-event-left">
+        <h3>🎉 Next Event</h3>
+        <p>Father's Day Weekend Salsa-Bachata Social</p>
+        <span>📍 Satori Studio · 1104 W Wellesley Ave, Spokane WA 99205</span><br>
+        <span>🎵 Music by River Street Latin Group · Free salsa lesson at 7:00pm</span>
+      </div>
+      <div class="next-event-right">
+        <div class="date-big">19</div>
+        <div class="date-sub">JUNE 2026</div>
+      </div>
+    </div>
+
+    <!-- Photos -->
+    <div class="card">
+      <h2>📸 Event Photos</h2>
+      <div class="photo-grid">
+        <div class="photo large">[ Main event floor — upload from Google Sites ]</div>
+        <div class="photo">[ Crowd ]</div>
+        <div class="photo large">[ Dancing ]</div>
+        <div class="photo">[ Venue ]</div>
+      </div>
+    </div>
+
+    <!-- About -->
+    <div class="card">
+      <h2>About This Opportunity</h2>
+      <p class="about-text">Casa de la Salsa hosts recurring Latin dance socials across Spokane that draw a vibrant, engaged crowd of young professionals, couples, and community members for evenings of live music, dancing, and genuine connection.<br><br>
+      These aren't passive audiences — attendees arrive excited, stay for hours, and are fully present throughout the event. Your brand shows up in an environment of energy, celebration, and community trust. Sponsors are recognized as supporters of something people genuinely love and come back to month after month.</p>
+      <div class="venue-note">
+        📺 <strong>About screens & signage:</strong> Casa de la Salsa events rotate between venues across Spokane. Screen size and placement vary by venue — from large projected screens to TV monitors. Your sponsor materials will be displayed on whatever screen setup is available at each event. We'll confirm venue details with you after booking.
+      </div>
+    </div>
+
+    <!-- Audience -->
+    <div class="card">
+      <h2>👥 Who You're Reaching</h2>
+      <div class="pills">
+        <div class="pill">Young Professionals</div>
+        <div class="pill">Adults & Couples</div>
+        <div class="pill gold">Ages 21–45</div>
+        <div class="pill dark">Spokane Locals</div>
+        <div class="pill">Latin Dance Community</div>
+        <div class="pill">All Ages Welcome</div>
+        <div class="pill gold">Diverse Community</div>
+      </div>
+      <p style="font-size:13px;color:#5f6368;line-height:1.65">This audience is highly social and community-oriented — they share experiences on social media, support local businesses, and return event after event. Sponsoring here means repeated exposure to the same engaged, loyal crowd over time.</p>
+    </div>
+
+    <!-- What you get -->
+    <div class="card">
+      <h2>✅ Every Sponsor Receives</h2>
+      <div class="what-grid">
+        <div class="what-item"><div class="what-icon">📋</div><div>Name or logo on sponsor slide displayed throughout the event</div></div>
+        <div class="what-item"><div class="what-icon">🎤</div><div>Verbal recognition and thank-you announcement during the event</div></div>
+        <div class="what-item"><div class="what-icon">📱</div><div>Social media sponsor mention to Casa de la Salsa's audience</div></div>
+        <div class="what-item"><div class="what-icon">📄</div><div>Promotional material distribution — flyers, cards, or coupons</div></div>
+        <div class="what-item"><div class="what-icon">🎁</div><div>Option to provide a giveaway item or raffle prize</div></div>
+        <div class="what-item"><div class="what-icon">🤝</div><div>Direct access to 150–300 engaged community members</div></div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- RIGHT — Booking -->
+  <div>
+    <div class="booking-card">
+      <h3>Sponsor This Event</h3>
+      <div class="booking-subtitle">Pick your package and book instantly.</div>
+
+      <div class="deadline">🗓️ Next event: June 19 — book now to be included!</div>
+
+      <div class="package selected" onclick="selectPkg(this,'Name on Sponsor Slide','$25','https://buy.stripe.com/5kQaEX2Cqfcc2h55c0fjG01')">
+        <div class="package-top">
+          <div class="package-name">📋 Name on Sponsor Slide</div>
+          <div class="package-price">$25</div>
+        </div>
+        <div class="package-desc">Your business name on a sponsor slide displayed during the event — perfect for student clubs & community groups</div>
+      </div>
+
+      <div class="package" onclick="selectPkg(this,'Community Spotlight','$50','https://buy.stripe.com/14AfZh3Gu8NO9JxgUIfjG02')">
+        <div class="package-top">
+          <div class="package-name">📣 Community Spotlight</div>
+          <div class="package-price">$50</div>
+        </div>
+        <div class="package-desc">Logo on shared sponsor slide + verbal thank-you announcement</div>
+      </div>
+
+      <div class="package" onclick="selectPkg(this,'Single Event Sponsor','$150','https://buy.stripe.com/00w28r1ym5BCg7VgUIfjG00')">
+        <div class="package-top">
+          <div class="package-name">🎤 Single Event Sponsor</div>
+          <div class="package-price">$150</div>
+        </div>
+        <div class="package-desc">Logo + social media mention + verbal shoutout + flyer distribution — full visibility for one event</div>
+      </div>
+
+      <div class="package" onclick="selectPkg(this,'3-Event Package','$400','https://buy.stripe.com/bJe28rfpcfccg7V5c0fjG03')">
+        <div class="popular-badge">Most Popular</div>
+        <div class="package-top">
+          <div class="package-name">🥇 3-Event Package <span class="package-save">Save $50</span></div>
+          <div class="package-price">$400</div>
+        </div>
+        <div class="package-desc">Everything in Single Event × 3 — build real recognition with repeat exposure</div>
+      </div>
+
+      <div class="package" onclick="selectPkg(this,'6-Event Package','$750','https://buy.stripe.com/14A6oHgtg0hi1d147WfjG04')">
+        <div class="package-top">
+          <div class="package-name">🎖️ 6-Event Package <span class="package-save">Save $150</span></div>
+          <div class="package-price">$750</div>
+        </div>
+        <div class="package-desc">Maximum visibility — become a familiar face in the community over 6 events</div>
+      </div>
+
+      <div class="package" onclick="selectPkg(this,'Annual Community Partner','$5,000','https://buy.stripe.com/9B69AT6SGe886xlbAofjG05')">
+        <div class="package-top">
+          <div class="package-name">⭐ Annual Community Partner</div>
+          <div class="package-price">$5,000</div>
+        </div>
+        <div class="package-desc">Year-round premier sponsorship — all events, top billing, first priority, ongoing social recognition</div>
+      </div>
+
+      <div class="summary" id="summary">
+        <div class="summary-title" id="summaryTitle">Name on Sponsor Slide — $25</div>
+        <div style="color:#5f6368">You'll be taken to a secure Stripe checkout page to complete your booking.</div>
+      </div>
+
+      <button class="book-btn" onclick="bookNow()">Book This Sponsorship →</button>
+
+      <hr>
+
+      <div class="trust">
+        <div class="trust-item">🔒 Secure payment via Stripe</div>
+        <div class="trust-item">📧 Confirmation sent to your email</div>
+        <div class="trust-item">💬 We'll reach out within 1 business day</div>
+        <div class="trust-item">📋 We'll send you a materials form to submit your logo & flyers</div>
+      </div>
+
+      <div class="contact-link" onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLSeZuozIvZQmuRbbPx2vmhhOEds4Q-TvaIjeMm6VII9gvdp5IA/viewform','_blank')">Have questions? Contact us first</div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+var selectedLink = 'https://buy.stripe.com/5kQaEX2Cqfcc2h55c0fjG01';
+
+function selectPkg(el, name, price, link) {
+  document.querySelectorAll('.package').forEach(p => p.classList.remove('selected'));
+  el.classList.add('selected');
+  selectedLink = link;
+  document.getElementById('summaryTitle').textContent = name + ' — ' + price;
+  document.getElementById('summary').classList.add('show');
+}
+
+function bookNow() {
+  window.open(selectedLink, '_blank');
+}
+</script>
+
+</body>
+</html>
