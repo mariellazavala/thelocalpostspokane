@@ -207,7 +207,7 @@ hr { border: none; border-top: 1px solid #f0f0f0; margin: 13px 0; }
   <div>
     <div class="booking-card">
       <h3>Sponsor This Event</h3>
-      <div class="booking-subtitle">Pick your package and book instantly.</div>
+      <div class="booking-subtitle">Pick your package and request to book — approval within 1 business day.</div>
       <div class="deadline">🗓️ Next event: June 19 — book now to be included!</div>
 
       <div class="package selected" onclick="selectPkg(this,'Name on Sponsor Slide','$25','https://buy.stripe.com/5kQaEX2Cqfcc2h55c0fjG01')">
@@ -243,16 +243,16 @@ hr { border: none; border-top: 1px solid #f0f0f0; margin: 13px 0; }
 
       <div class="summary" id="summary">
         <div class="summary-title" id="summaryTitle">Name on Sponsor Slide — $25</div>
-        <div style="color:#5f6368">You'll be taken to a secure Stripe checkout to complete your booking.</div>
+        <div style="color:#5f6368">You'll be taken to a short request form. Once approved we'll send you a secure payment link within 1 business day.</div>
       </div>
 
-      <button class="book-btn" onclick="bookNow()">Book This Sponsorship →</button>
+      <button class="book-btn" onclick="bookNow()">Request to Book →</button>
 
       <hr>
-      <div class="trust-item">🔒 Secure payment via Stripe</div>
-      <div class="trust-item">📧 Confirmation sent to your email</div>
-      <div class="trust-item">💬 We'll reach out within 1 business day</div>
-      <div class="trust-item">📋 We'll send a materials form for your logo & flyers</div>
+      <div class="trust-item">📋 Submit a quick 3-minute request form</div>
+      <div class="trust-item">✅ We'll review and confirm within 1 business day</div>
+      <div class="trust-item">🔒 Secure payment link sent upon approval</div>
+      <div class="trust-item">📧 Confirmation and materials form sent to your email</div>
       <div class="contact-link" onclick="window.open('https://sites.google.com/view/thelocalpostspokane/home','_blank')">Have questions? Contact us first</div>
     </div>
   </div>
@@ -267,7 +267,10 @@ function selectPkg(el, name, price, link) {
   document.getElementById('summaryTitle').textContent = name + ' — ' + price;
   document.getElementById('summary').classList.add('show');
 }
-function bookNow() { window.open(selectedLink, '_blank'); }
+function bookNow() { 
+  var formUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSchD8nJNLro4uFf6oSdgXgsBPnXysBAai3Xz-84ZZ6_rQS4cQ/viewform?usp=header';
+  window.open(formUrl, '_blank'); 
+}
 </script>
 </body>
 </html>
